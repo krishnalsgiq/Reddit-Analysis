@@ -13,8 +13,8 @@ reddit = praw.Reddit(
     client_secret=os.getenv('REDDIT_CLIENT_SECRET'),
     user_agent=os.getenv('REDDIT_USER_AGENT')
 )
-
 def get_last_processed_post(connection):
+    
     with connection.cursor() as cur:
         cur.execute("SELECT MAX(created_utc) FROM reddit_posts;")
         last_timestamp = cur.fetchone()[0]
@@ -62,10 +62,11 @@ def continuous_collection():
         try:
             # Establish new connection each iteration
             conn = psycopg2.connect(
-                host=os.getenv('POSTGRES_HOST'),
-                database=os.getenv('POSTGRES_DB'),
-                user=os.getenv('POSTGRES_USER'),
-                password=os.getenv('POSTGRES_PASSWORD')
+                host=os.getenv('DB_HOST'),
+                database=os.getenv('DB_NAME'),
+                user=os.getenv('DB_USER'),
+                password=os.getenv('DB_PASSWORD'),
+                port=int(os.getenv('DB_PORT'))
             )
             
             last_timestamp = get_last_processed_post(conn)
