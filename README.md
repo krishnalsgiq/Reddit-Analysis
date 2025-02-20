@@ -24,7 +24,7 @@ Before running the script, ensure you have the following:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/BharathRajuPalla/reddit_analysis.git
+git clone https://github.com/krishnatejalsgiq/reddit_analysis.git
 cd reddit_analysis
 ```
 
